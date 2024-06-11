@@ -1,3 +1,4 @@
+import hmac
 from openai import AzureOpenAI
 import streamlit as st
 import chromadb.utils.embedding_functions as embedding_functions
@@ -5,7 +6,36 @@ import chromadb
 from chromadb.config import Settings
 from llama_index.core import PromptTemplate
 
-st.title("SEGES-GPT")
+def check_password():
+    """Returns `True` if the user had the correct password."""
+
+    def password_entered():
+        """Checks whether a password entered by the user is correct."""
+        if hmac.compare_digest(st.session_state["password"], st.secrets["password"]):
+            st.session_state["password_correct"] = True
+            del st.session_state["password"]  # Don't store the password.
+        else:
+            st.session_state["password_correct"] = False
+
+    # Return True if the password is validated.
+    if st.session_state.get("password_correct", False):
+        return True
+
+    # Show input for password.
+    st.text_input(
+        "Password", type="password", on_change=password_entered, key="password"
+    )
+    if "password_correct" in st.session_state:
+        st.error("😕 Password incorrect")
+    return False
+
+
+if not check_password():
+    st.stop()  # Do not continue if check_password is not True.
+
+
+st.title("AgroGPT")
+st.text("Velkommen til AgroGPT, en chatbot, der kan hjælpe dig med at besvare spørgsmål\nom landsforsøg m.m.")
 
 client = AzureOpenAI(api_key=st.secrets["OPENAI_API_KEY"], 
                 api_version="2024-05-01-preview", 

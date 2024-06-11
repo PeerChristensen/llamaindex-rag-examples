@@ -9,3 +9,5 @@ fandom-py
 llama-index
 llama-index-llms-openai
 streamlit
+chromadb 
+llama-index-vector-stores-chroma

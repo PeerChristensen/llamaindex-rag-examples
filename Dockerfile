@@ -11,11 +11,10 @@ RUN apt-get update && apt-get install -y \
 
 RUN git clone https://github.com/streamlit/streamlit-example.git .
 
-RUN pip3 install -r requirements.txt
-
 COPY streamlit-app.py /app/
 COPY requirements.txt /app/
-COPY .streamlit /app/
+COPY .streamlit /app/.streamlit
+COPY landsforsøg /app/landsforsøg
 
 RUN pip3 install -r requirements.txt
 
