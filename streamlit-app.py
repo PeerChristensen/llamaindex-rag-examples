@@ -34,8 +34,10 @@ if not check_password():
     st.stop()  # Do not continue if check_password is not True.
 
 
-st.title("AgroGPT")
-st.text("Velkommen til AgroGPT, en chatbot, der kan hjælpe dig med at besvare spørgsmål\nom landsforsøg m.m.")
+#st.title(':green[AgroGPT]')
+st.markdown("<h1 style='color: darkgreen;'>AgroGPT</h1>", unsafe_allow_html=True)
+st.markdown("<p style='color: darkgreen;'>Velkommen til AgroGPT, en chatbot, der kan hjælpe dig med at besvare spørgsmål<br>om landsforsøg m.m.</p>",
+             unsafe_allow_html=True)
 
 client = AzureOpenAI(api_key=st.secrets["OPENAI_API_KEY"], 
                 api_version="2024-05-01-preview", 
