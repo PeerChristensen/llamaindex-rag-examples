@@ -1,0 +1,7 @@
+python-dotenv
+mdutils
+openai
+llama-index
+streamlit
+chromadb
+tenacity

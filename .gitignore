@@ -26,3 +26,4 @@ ipython_config.py
 .env
 data
 .conda
+.Rproj.user

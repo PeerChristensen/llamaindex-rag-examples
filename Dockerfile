@@ -12,11 +12,12 @@ RUN apt-get update && apt-get install -y \
 RUN git clone https://github.com/streamlit/streamlit-example.git .
 
 COPY streamlit-app.py /app/
-COPY requirements.txt /app/
+COPY requirements_docker.txt /app/
 COPY .streamlit /app/.streamlit
-COPY landsforsøg /app/landsforsøg
+COPY landsforsøg/chromadb /app/landsforsøg/chromadb
+COPY style.css /app/
 
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r requirements_docker.txt
 
 EXPOSE 8501
 
